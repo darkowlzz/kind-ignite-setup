@@ -1,0 +1,26 @@
+version: 2
+jobs:
+  build:
+    machine:
+      image: ubuntu-1604:201903-01    # recommended linux image - includes Ubuntu 16.04, docker 18.09.3, docker-compose 1.23.1
+    environment:
+      TEST_RESULTS: /tmp/test-results # path to where test results will be saved
+    steps:
+      - checkout # check out source code to working directory
+      - run: mkdir -p ${TEST_RESULTS} # create the test results directory
+      - run:
+          name: Install dapper # Perform all the builds in a container using dapper.
+          command: |
+            curl -sL https://releases.rancher.com/dapper/latest/dapper-`uname -s`-`uname -m` > dapper;
+            sudo chmod +x ./dapper;
+      - run:
+          name: Create binaries in container
+          command: |
+              # Copy host docker binary to the PWD. Dapper copies it to the
+              # build container and uses it to run Docker-in-Docker builds (for
+              # kind image builds only).
+              cp $(which docker) .;
+              ./dapper;
+              cp -r bin ${TEST_RESULTS}
+      - store_artifacts:
+          path: /tmp/test-results
