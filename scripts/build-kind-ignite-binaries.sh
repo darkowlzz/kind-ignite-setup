@@ -41,7 +41,9 @@ fi
 # Build kind.
 pushd "$KIND_GIT_REPO_DIR"
     echo "Building kind..."
-    go build -v $KIND_IMPORT_PATH
+    go version
+    GO111MODULE="on" go mod vendor
+    GO111MODULE="on" go build -v $KIND_IMPORT_PATH
     cp kind "$BIN_DIR"
 popd
 
