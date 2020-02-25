@@ -1,0 +1,5 @@
+FROM golang:1.13.8
+ENV DAPPER_SOURCE /go/src/github.com/darkowlzz/storage-conformance-test-setup
+ENV DAPPER_OUTPUT bin
+WORKDIR ${DAPPER_SOURCE}
+ENTRYPOINT ["make", "binaries"]
