@@ -14,6 +14,12 @@ jobs:
             curl -sL https://releases.rancher.com/dapper/latest/dapper-`uname -s`-`uname -m` > dapper;
             sudo chmod +x ./dapper;
       - run:
+          name: Install new golang
+          command: |
+            sudo rm -rf /usr/local/go;
+            curl -Lo go.tar.gz https://dl.google.com/go/go1.13.8.linux-amd64.tar.gz;
+            sudo tar -C /usr/local -xzf go.tar.gz;
+      - run:
           name: Create binaries in container
           command: |
               # Copy host docker binary to the PWD. Dapper copies it to the

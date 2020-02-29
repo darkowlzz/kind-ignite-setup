@@ -50,7 +50,7 @@ popd
 # Prepare ignite repo.
 if [ ! -d "$IGNITE_GIT_REPO_DIR" ]; then
     # Clone ignite fork.
-    echo "Cloning kind repo..."
+    echo "Cloning ignite repo..."
     git clone --branch "$IGNITE_BRANCH" "$IGNITE_REPO" "$IGNITE_GIT_REPO_DIR" --depth 1
 else
     # ignite repo already exists. Add forked repo as a new remote and checkout to
