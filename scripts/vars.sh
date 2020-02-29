@@ -8,7 +8,7 @@ BIN_DIR="$PWD/bin"
 BUILD_GOPATH="${GOPATH%%:*}"
 
 KIND_REPO="${KIND_REPO:-https://github.com/darkowlzz/kind}"
-KIND_BRANCH="${KIND_BRANCH:-ignite-support2}"
+KIND_BRANCH="${KIND_BRANCH:-ignite-support-storageos-images}"
 KIND_IMPORT_PATH=sigs.k8s.io/kind
 KIND_GIT_REPO_DIR="$BUILD_GOPATH/src/$KIND_IMPORT_PATH"
 KIND_BIN_PATH="$BIN_DIR/kind"
