@@ -19,8 +19,9 @@ jobs:
               # Copy host docker binary to the PWD. Dapper copies it to the
               # build container and uses it to run Docker-in-Docker builds (for
               # kind image builds only).
-              cp $(which docker) .;
-              ./dapper;
+              # cp $(which docker) .;
+              # ./dapper;
+              make all
               cp -r bin ${TEST_RESULTS}
       - store_artifacts:
           path: /tmp/test-results

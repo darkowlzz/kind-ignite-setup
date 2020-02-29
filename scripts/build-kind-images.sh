@@ -91,7 +91,6 @@ pushd "$KIND_GIT_REPO_DIR"
 
     # Use the kind binary in bin dir to build the images.
 
-    # Build base image using k/k.
     echo "Building base-image..."
     $KIND_BIN_PATH build base-image --ignite=true --image=darkowlzz/base-ignite:test
 

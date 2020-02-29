@@ -44,7 +44,7 @@ pushd "$KIND_GIT_REPO_DIR"
     go version
     go mod vendor
     go build -v $KIND_IMPORT_PATH
-    cp kind "$BIN_DIR"
+    cp kind "$KIND_BIN_PATH"
 popd
 
 # Prepare ignite repo.
@@ -76,5 +76,5 @@ fi
 pushd "$IGNITE_GIT_REPO_DIR"
     echo "Building ignite..."
     make bin/amd64/ignite
-    cp bin/ignite "$BIN_DIR"
+    cp bin/ignite "$IGNITE_BIN_PATH"
 popd
