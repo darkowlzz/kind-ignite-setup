@@ -7,7 +7,7 @@ source scripts/vars.sh
 
 # k8s repo verison to build the kind node image from.
 K8S_REPO_VERSION="${K8S_REPO_VERSION:-v1.17.0}"
-K8S_REPO_DIR="$GOPATH/src/k8s.io/kubernetes"
+K8S_REPO_DIR="$BUILS_GOPATH/src/k8s.io/kubernetes"
 
 # rsync is required to build k8s, check if it exists.
 if hash rsync 2>/dev/null; then
@@ -33,7 +33,7 @@ echo "Preparing k/k repo..."
 if [ ! -d "$K8S_REPO_DIR" ]; then
     # Clone k/k.
     echo "Cloning k/k..."
-    git clone --branch $K8S_REPO_VERSION https://github.com/kubernetes/kubernetes $GOPATH/src/k8s.io/kubernetes
+    git clone --branch $K8S_REPO_VERSION https://github.com/kubernetes/kubernetes $BUILD_GOPATH/src/k8s.io/kubernetes
 else
     # k/k repo already exists. Checkout to $K8S_REPO_VERSION tag.
     pushd "$K8S_REPO_DIR"
