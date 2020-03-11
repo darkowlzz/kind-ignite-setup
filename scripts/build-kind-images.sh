@@ -7,7 +7,7 @@ source scripts/vars.sh
 
 # k8s repo verison to build the kind node image from.
 K8S_REPO_VERSION="${K8S_REPO_VERSION:-v1.17.0}"
-K8S_REPO_DIR="$BUILS_GOPATH/src/k8s.io/kubernetes"
+K8S_REPO_DIR="$BUILD_GOPATH/src/k8s.io/kubernetes"
 
 # rsync is required to build k8s, check if it exists.
 if hash rsync 2>/dev/null; then
@@ -15,17 +15,6 @@ if hash rsync 2>/dev/null; then
 else
     echo "rsync not found. Install rsync and run again."
     exit 1
-fi
-
-if hash docker 2>/dev/null; then
-    echo "docker found..."
-else
-    echo "Copying docker to /usr/bin/docker ..."
-    # NOTE: Copy host docker binary to PWD before running this script, if using
-    # Docker-in-Docker to build images.
-    # Use something like: cp $(which docker) .
-    cp ./docker /usr/bin/docker
-    docker version
 fi
 
 # Check if k/k already exists.
