@@ -1,5 +1,7 @@
 # kind-ignite-setup
 
+[![CircleCI](https://circleci.com/gh/darkowlzz/kind-ignite-setup.svg?style=svg)](https://circleci.com/gh/darkowlzz/kind-ignite-setup)
+
 Run kind k8s cluster backed by ignite VMs.
 This is a proof of concept based on forked versions of
 [kind](https://github.com/kubernetes-sigs/kind) and
