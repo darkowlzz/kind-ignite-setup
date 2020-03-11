@@ -118,3 +118,14 @@ rm -f kind-kubeconfig.yaml
 
 Gist of an initial POC workflow
 https://gist.github.com/darkowlzz/7a4a0a85723e0d542d0db46232cf75bf .
+
+
+Prebuilt binaries can be downloaded for
+[ignite](https://github.com/darkowlzz/ignite/releases/download/ignite-kind-essentials/ignite)
+and
+[kind](https://github.com/darkowlzz/kind/releases/download/ignite-support/kind-ignite-path).
+They can be used with kind node image `darkowlzz/node-ignite:6`.
+
+```
+$ sudo ./bin/kind create cluster --image darkowlzz/node-ignite:6 --ignite=./bin/ignite --config=kind-cluster.yaml --name=kind
+```
