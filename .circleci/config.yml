@@ -1,0 +1,23 @@
+version: 2
+jobs:
+  build:
+    machine:
+      image: ubuntu-1604:201903-01    # recommended linux image - includes Ubuntu 16.04, docker 18.09.3, docker-compose 1.23.1
+    environment:
+      TEST_RESULTS: /tmp/test-results # path to where test results will be saved
+    steps:
+      - checkout # check out source code to working directory
+      - run: mkdir -p ${TEST_RESULTS} # create the test results directory
+      - run:
+          name: Install new golang
+          command: |
+            sudo rm -rf /usr/local/go;
+            curl -Lo go.tar.gz https://dl.google.com/go/go1.13.8.linux-amd64.tar.gz;
+            sudo tar -C /usr/local -xzf go.tar.gz;
+      - run:
+          name: Build binaries and images
+          command: |
+              make all
+              cp -r bin ${TEST_RESULTS}
+      - store_artifacts:
+          path: /tmp/test-results
