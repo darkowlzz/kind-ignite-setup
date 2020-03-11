@@ -70,7 +70,7 @@ echo ""
 # Build kind.
 pushd "$KIND_GIT_REPO_DIR"
     # Check if kind binary exists. Build if not exists.
-    if [ ! -f "$KIND_BIN_PATH" ]; then
+    if [ ! -f "$KIND_BIN" ]; then
         echo "Building kind..."
         go build -v "$KIND_IMPORT_PATH"
         cp kind "$BIN_DIR"
@@ -81,11 +81,11 @@ pushd "$KIND_GIT_REPO_DIR"
     # Use the kind binary in bin dir to build the images.
 
     echo "Building base-image..."
-    $KIND_BIN_PATH build base-image --ignite=true --image=darkowlzz/base-ignite:test
+    $KIND_BIN build base-image --ignite=true --image=darkowlzz/base-ignite:test
 
     # Build node image.
     echo "Building node-image..."
-    $KIND_BIN_PATH build node-image --ignite=true --base-image=darkowlzz/base-ignite:test --image=darkowlzz/node-ignite:test
+    $KIND_BIN build node-image --ignite=true --base-image=darkowlzz/base-ignite:test --image=darkowlzz/node-ignite:test
 popd
 
 # Save the images.
