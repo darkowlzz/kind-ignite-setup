@@ -15,6 +15,16 @@ and ignite repo or if it finds existing kind and ignite repo, it adds the forks
 as git remote and pulls the appropriate branch, and builds kind and ignite
 binaries.
 
+NOTE: At the moment, ignite uses a sandbox container image that's based on the
+name of the branch it's built from. Due to this, the ignite binary may fail to
+create VMs with error:
+```
+FATA[0007] failed to resolve reference "docker.io/weaveworks/ignite:ignite-kind-essentials": docker.io/weaveworks/ignite:ignite-kind-essentials: not found 
+```
+Until this becomes configurable, `weaveworks/ignite:v0.6.3` can be downloaded,
+retagged to `weaveworks/ignite:ignite-kind-essentials`, saved as a tar file
+and imported into the containerd runtime that ignite uses.
+
 ## Building images
 
 To build a kind base and node images that are compatible with ignite VM, run:
@@ -83,6 +93,7 @@ be copied to the current directory as `kind-kubeconfig.yaml`. This can be used t
 interact with the kind cluster.
 
 Delete the cluster:
+
 ```
 $ make clean
 ⚠️  Require root access to delete ignite VMs
