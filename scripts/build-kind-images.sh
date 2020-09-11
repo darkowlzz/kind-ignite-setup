@@ -85,7 +85,10 @@ pushd "$KIND_GIT_REPO_DIR"
 
     # Build node image.
     echo "Building node-image..."
-    $KIND_BIN build node-image --ignite=true --base-image=darkowlzz/base-ignite:test --image=darkowlzz/node-ignite:test
+    $KIND_BIN build node-image --ignite=true \
+        --base-image=darkowlzz/base-ignite:test \
+        --image=darkowlzz/node-ignite:test \
+        --kube-root=$K8S_REPO_DIR
 popd
 
 # Save the images.
