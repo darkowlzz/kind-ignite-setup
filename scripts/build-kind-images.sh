@@ -6,8 +6,8 @@ set -e
 source scripts/vars.sh
 
 # k8s repo verison to build the kind node image from.
-K8S_REPO_VERSION="${K8S_REPO_VERSION:-v1.17.0}"
-K8S_REPO_DIR="$BUILS_GOPATH/src/k8s.io/kubernetes"
+K8S_REPO_VERSION="${K8S_REPO_VERSION:-v1.19.1}"
+K8S_REPO_DIR="$BUILD_GOPATH/src/k8s.io/kubernetes"
 
 # rsync is required to build k8s, check if it exists.
 if hash rsync 2>/dev/null; then
@@ -96,7 +96,7 @@ pushd "$KIND_GIT_REPO_DIR"
 
     # Build node image.
     echo "Building node-image..."
-    $KIND_BIN_PATH build node-image --ignite=true --base-image=darkowlzz/base-ignite:test --image=darkowlzz/node-ignite:test
+    $KIND_BIN_PATH build node-image --ignite=true --base-image=darkowlzz/base-ignite:test --image=darkowlzz/node-ignite:test --kube-root=$K8S_REPO_DIR
 popd
 
 # Save the images.
