@@ -6,7 +6,7 @@ set -e
 source scripts/vars.sh
 
 # k8s repo verison to build the kind node image from.
-K8S_REPO_VERSION="${K8S_REPO_VERSION:-v1.19.1}"
+K8S_REPO_VERSION="${K8S_REPO_VERSION:-v1.20.0}"
 K8S_REPO_DIR="$BUILD_GOPATH/src/k8s.io/kubernetes"
 
 # rsync is required to build k8s, check if it exists.
